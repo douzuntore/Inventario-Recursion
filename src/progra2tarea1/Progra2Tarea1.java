@@ -106,14 +106,14 @@ public class Progra2Tarea1 {
         JOptionPane.showOptionDialog(
                 null, 
                 ""
-                        + "Bienvenido al programa!\n"
+                        + "Bienvenido a la Recursion!\n"
                         + "|\n"
-                        + "Haz click en <<Entrar al Inventario>> para acceder un CRUD de vehiculos.\n"
-                        + "Haz click en <<Entrar a la Recursividad>> para acceder a distintas funciones hechas con recursion.\n\n", 
+                        + "Dispones de ciertas funciones hechas con recursividad.\n"
+                        + "Hay opciones de disponen de sub-menus, Diviertete!\n\n", 
                 "Menu principal", 
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, 
                 null, 
-                new String[]{"Salir >>"}, 
+                new String[]{"Salir >>","Busqueda Binaria","Fibonacci","MCD","Decimal a Binario"}, 
                 "Entrar al Inventario"
         )
         ) {
@@ -122,10 +122,21 @@ public class Progra2Tarea1 {
                 return false;
             }
             case 1 -> {
-                
+                int[] array = new int[25];
+                for (int i = 0; i < array.length; i++) {
+                    array[i] = rng.nextInt(100,1000);
+                }
+                Recursion.bubbleSort(array);
+                while (RecursionMenus.busquedaBinariaMenu(array)) {}
             }
             case 2 -> {
-                
+                RecursionMenus.fibonacciMenu();
+            }
+            case 3 -> {
+                RecursionMenus.MCDMenu();
+            }
+            case 4 -> {
+                RecursionMenus.numBinarioMenu();
             }
         }
         return true;

@@ -127,7 +127,7 @@ public class Vehiculo {
         switch (
         JOptionPane.showOptionDialog(
                 null, 
-                "Elige el atributo que deseas editar",
+                "Elige el atributo que deseas editar.",
                 "",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, 
                 null, 
