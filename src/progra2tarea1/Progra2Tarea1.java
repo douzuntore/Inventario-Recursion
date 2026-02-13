@@ -81,7 +81,7 @@ public class Progra2Tarea1 {
             }
             case 1 -> {
                 if (!inv.getCont().isEmpty()) {
-                    inv.editarVehiculo();
+                    inv.listarVehiculos();
                 }
             }
             case 2 -> {

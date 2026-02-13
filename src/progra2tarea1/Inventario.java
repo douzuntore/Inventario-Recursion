@@ -27,14 +27,37 @@ public class Inventario {
     }
     
     public void editarVehiculo() {
-        buscarVehiculoInd().editarVehiculo();
+        buscarVehiculoInd(""
+                + "Selecciona el vehículo que quieras editar."
+                + "").editarVehiculo();
     }
     
     public void removerVehiculo() {
-        this.contenido.remove(buscarVehiculoInd());
+        this.contenido.remove(buscarVehiculoInd(""
+                + "Selecciona el vehículo que quieras remover."
+                + ""));
     }
     
-    private Vehiculo buscarVehiculoInd() {
+    public void listarVehiculos() {
+        String cuerpo = "";
+        for (int i = 0; i < this.contenido.size(); i++) {
+            cuerpo += this.contenido.get(i).toString();
+            if ((i+1) % 3 == 0 || i == this.contenido.size()-1) {
+                JOptionPane.showOptionDialog(
+                null, 
+                cuerpo,
+                "",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, 
+                null, 
+                new String[]{"OK"}, 
+                "OK"
+                );
+                cuerpo = "";
+            }
+        }
+    }
+    
+    private Vehiculo buscarVehiculoInd(String cuerpo) {
         String[] opciones = new String[this.contenido.size()];
         for (int i = 0; i < this.contenido.size(); i++) {
             opciones[opciones.length-1-i] = this.contenido.get(i).getModelo()+", "+this.contenido.get(i).getYear();
@@ -43,11 +66,7 @@ public class Inventario {
         return this.contenido.get(
         JOptionPane.showOptionDialog(
         null, 
-        ""
-                + "Bienvenido al Inventario!\n"
-                + "|\n"
-                + "Sientete en la libertad de poder editar tu inventario de vehiculos a tu gusto.\n"
-                + "No te preocupes! Al salir de este menú tu inventario quedará guardado.\n\n", 
+        cuerpo, 
         "Menu del Inventario", 
         JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, 
         null, 

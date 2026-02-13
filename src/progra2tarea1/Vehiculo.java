@@ -123,49 +123,92 @@ public class Vehiculo {
     }
     
     public void editarVehiculo() {
-        String str; Scanner sc = new Scanner(System.in);
-        
-        boolean continuar = true; do {
-
-            System.out.printf(""
-                    + "Escribir nombre del atributo a editar.%n"
-                    + "- Matricula%n"
-                    + "- Marca%n"
-                    + "- Modelo%n"
-                    + "- Color%n"
-                    + "- Año%n"
-                    + "- Precio%n"
-                    + ">> ");
-            str = sc.nextLine();
-            switch (str.toLowerCase()) {
-                case "año", "ano" -> {
-                    do {
-                        System.out.printf("Ingrese el nuevo año del vehículo.%n>> ");
-                        try {
-                            str = sc.nextLine();
-                            this.year = Integer.parseInt(str);
-                            if (this.year >= 1000 && this.year <= 9999) {break;} 
-                        } 
-                        catch (NumberFormatException e) {}
-                        catch (Exception e) {System.out.println(e);}
-                    } while (true);
-                }
-                case "precio" -> {
-                    do {
-                        System.out.printf("Ingrese el nuevo precio del vehículo.%n>> ");
-                        try {
-                            str = sc.nextLine();
-                            this.precio = Double.parseDouble(str);
-                            if (this.precio > 0) {break;} 
-                        } 
-                        catch (NumberFormatException e) {}
-                        catch (Exception e) {System.out.println(e);}
-                    } while (true);
-                }
+        String str;
+        switch (
+        JOptionPane.showOptionDialog(
+                null, 
+                "Elige el atributo que deseas editar",
+                "",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, 
+                null, 
+                new String[]{"Precio","Año","Color","Marca","Modelo","Matrícula"}, 
+                "Entrar al Inventario"
+        )
+        ) 
+        {
+            case 5 -> {
+                do {
+                    str = JOptionPane.showInputDialog(null, "Ingrese la matrícula del vehículo.", "", JOptionPane.PLAIN_MESSAGE);
+                    if (str == null) {} else if (str.trim().isEmpty()) {} else {
+                        this.matricula = str;
+                        break;
+                    }
+                } while (true);
             }
-        } while (continuar);
+            case 4 -> {
+                do {
+                    str = JOptionPane.showInputDialog(null, "Ingrese el modelo del vehículo.", "", JOptionPane.PLAIN_MESSAGE);
+                    if (str == null) {} else if (str.trim().isEmpty()) {} else {
+                        this.modelo = str;
+                        break;
+                    }
+                } while (true);
+            }
+            case 3 -> {
+                do {
+                    str = JOptionPane.showInputDialog(null, "Ingrese la marca del vehículo.", "", JOptionPane.PLAIN_MESSAGE);
+                    if (str == null) {} else if (str.trim().isEmpty()) {} else {
+                        this.marca = str;
+                        break;
+                    }
+                } while (true);
+            }
+            case 2 -> {
+                do {
+                    str = JOptionPane.showInputDialog(null, "Ingrese el color del vehículo.", "", JOptionPane.PLAIN_MESSAGE);
+                    if (str == null) {} else if (str.trim().isEmpty()) {} else {
+                        this.color = str;
+                        break;
+                    }
+                } while (true);
+            }
+            case 1 -> {
+                do {
+                    try {
+                        str = JOptionPane.showInputDialog(null, "Ingrese el año del vehículo.", "", JOptionPane.PLAIN_MESSAGE);
+                        this.year = Integer.parseInt(str);
+                        if (this.year >= 1000 && this.year <= 9999) {break;} 
+                    } 
+                    catch (NumberFormatException e) {}
+                    catch (Exception e) {System.out.println(e);}
+                } while (true);
+            }
+            case 0 -> {
+                do {
+                    try {
+                        str = JOptionPane.showInputDialog(null, "Ingrese el precio del vehículo.", "", JOptionPane.PLAIN_MESSAGE);
+                        this.precio = Double.parseDouble(str);
+                        if (this.precio > 0) {break;} 
+                    } 
+                    catch (NumberFormatException e) {}
+                    catch (Exception e) {System.out.println(e);}
+                } while (true);
+            }
+        }
     }
-    
-    
+
+    @Override
+    public String toString() {
+        String str = ""
+                + "|-=-=-=-= "+this.modelo+", "+this.year+" =-=-=-=-|\n"
+                + "| Matricula: "+this.matricula+"\n"
+                + "| Modelo: "+this.modelo+"\n"
+                + "| Marca: "+this.marca+"\n"
+                + "| Color: "+this.color+"\n"
+                + "| Año: "+this.year+"\n"
+                + "| Precio: "+this.precio+" $\n"
+                + "^\n";
+        return str;
+    }
     
 }
